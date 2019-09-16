@@ -33,8 +33,8 @@ export default createComponent({
 
 <style scoped>
 .svg-icon {
-  width: 1em;
-  height: 1em;
+  width: 50px;
+  height: 50px;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;

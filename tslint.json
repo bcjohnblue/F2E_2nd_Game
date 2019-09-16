@@ -10,6 +10,7 @@
       "always"
     ],
     "import-name": false,
+    "function-name": false,
     "linebreak-style": false,
     "trailing-comma": false
   },

@@ -9,10 +9,12 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/mustache-interpolation-spacing': ['error', 'always'],
-    'vue/no-unused-vars': ['error', 'always']
+    'vue/no-unused-vars': ['error']
   },
   parserOptions: {
-    parser: 'babel-eslint',
-    ecmaVersion: 6
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 6,
+    sourceType: 'module'
   }
+  // parser: '@typescript-eslint/parser'
 };
