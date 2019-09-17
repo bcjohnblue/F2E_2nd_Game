@@ -1,11 +1,13 @@
 <template>
   <div class="body">
-    <Start v-if="playState === 'start'"></Start>
+    <!-- <Start v-if="playState === 'start'"></Start> -->
+    <!-- <Obstacles></Obstacles> -->
   </div>
 </template>
 
 <script lang="ts">
 import { createComponent, reactive, onMounted, computed } from '@vue/composition-api';
+// import Obstacles from '@/components/Obstacles.tsx'
 // import { mapState } from 'vuex'
 // import {
 //   State,
@@ -17,20 +19,19 @@ import { createComponent, reactive, onMounted, computed } from '@vue/composition
 import store from '@/store'
 import Start from '@/components/Start.vue'
 
-export default createComponent({
+// export default createComponent({
+//   components: {
+//     Start, Obstacles
+//   },
+//   setup() {
+//     const playState = computed(() => store.state.playState)
+//     console.log(store.state);
 
-  components: {
-    Start
-  },
-  setup() {
-    const playState = computed(() => store.state.playState)
-    console.log(store.state);
-
-    return {
-      playState
-    }
-  }
-})
+//     return {
+//       playState
+//     }
+//   }
+// })
 </script>
 
 <style lang="sass" scoped>

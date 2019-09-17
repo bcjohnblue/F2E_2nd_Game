@@ -4,9 +4,29 @@ function resolve(dir) {
   return path.join(__dirname, '.', dir);
 }
 
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
+  css: {
+    loaderOptions: {
+      // pass options to sass-loader
+      sass: {
+        // @/ is an alias to src/
+        // so this assumes you have a file named `src/variables.scss`
+        // data: `@import "styles/index.sass";`
+      }
+    }
+  },
   configureWebpack: {
-    plugins: []
+    plugins: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            drop_console: true
+          }
+        }
+      })
+    ]
   },
   chainWebpack: config => {
     config.module.rules.delete('svg'); // 重点:删除默认配置中处理svg,
