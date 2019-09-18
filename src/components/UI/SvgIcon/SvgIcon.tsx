@@ -1,4 +1,5 @@
-import { createComponent, computed } from '@vue/composition-api';
+import { createComponent, createElement as h, computed } from '@vue/composition-api';
+import styles from './SvgIcon.module.sass';
 
 export default createComponent({
   name: 'SvgIcon',
@@ -14,12 +15,14 @@ export default createComponent({
   } as const,
   setup(props) {
     const iconName = computed(() => `#icon-${props.name}`);
-    const svgClass = computed(() => (props.className ? `svg-icon ${props.className}` : 'svg-icon'));
-
-    return () => (
-      <svg class={svgClass} aria-hidden="true">
-        <use xlink:href={iconName} />
-      </svg>
+    const svgClass = computed(() =>
+      props.className ? `${styles.svg_icon} ${props.className}` : styles.svg_icon
     );
+
+    return () =>
+      h('svg', { class: svgClass.value, attrs: { 'aria-hidden': true } }, [
+        ,
+        h('use', { attrs: { 'xlink:href': iconName.value } })
+      ]);
   }
 });

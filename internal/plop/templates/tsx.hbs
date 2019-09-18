@@ -1,0 +1,14 @@
+import { createComponent, reactive, onMounted } from '@vue/composition-api';
+import styles from './{{ pascalCase name }}.module.sass';
+
+export default createComponent({
+  name: '{{ pascalCase name }}',
+  components: {},
+  setup() {
+    return () => (
+      <div class={ styles.{{ snakeCase name }} }>
+        
+      </div>
+    );
+  }
+});

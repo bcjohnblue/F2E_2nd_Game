@@ -1,6 +1,6 @@
 export enum PlayState {
-  start = 'start',
-  processing = 'processing'
+  start,
+  processing
 }
 
 export interface IRootState {

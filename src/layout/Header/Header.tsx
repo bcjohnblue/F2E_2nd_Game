@@ -1,10 +1,7 @@
 import { createComponent, reactive, onMounted } from '@vue/composition-api';
+import styles from './Header.module.sass';
 
-import Obstacles from '@/components/Obstacles';
-import store from '@/store';
-// import Start from '@/components/Start.vue';
 import SvgIcon from '@/components/UI/SvgIcon/SvgIcon';
-// import SvgIcon from '@/components/UI/SvgIcon.vue';
 
 export default createComponent({
   name: 'Header',
@@ -17,21 +14,21 @@ export default createComponent({
 
     const lifeList = reactive(Array.from({ length: 3 }));
     const lifeListDOM = lifeList.map((item, index) => (
-      <SvgIcon name="生命" className="life"></SvgIcon>
+      <SvgIcon name="生命" className={styles.life}></SvgIcon>
     ));
     onMounted(() => {
       // console.log(lifeSVG);
     });
 
     return () => (
-      <div class="header">
-        <div class="life_container">{lifeListDOM}</div>
-        <div class="time_container">
+      <div class={styles.header}>
+        <div class={styles.life_container}>{lifeListDOM}</div>
+        <div class={styles.time_container}>
           <span>TIME:</span>
           <span>90</span>
           <span>S</span>
         </div>
-        <div class="money_container">
+        <div class={styles.money_container}>
           <SvgIcon name="金幣數"></SvgIcon>
           <span>X</span>
           <span>0</span>
