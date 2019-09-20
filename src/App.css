@@ -1,5 +1,7 @@
 #app {
-  background-image: url('./icons/svg/背景＿又老又窮.jpg');
-  background-repeat: round;
+  /* background-image: url('./icons/svg/背景＿又老又窮.jpg');
+  background-repeat: round; */
+  width: 100vw;
   height: 100vh;
+  position: absolute;
 }
