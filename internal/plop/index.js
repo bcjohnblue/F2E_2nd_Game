@@ -1,9 +1,7 @@
 const componentGenerator = require('./components');
-// const containerGenerator = require('./containers');
-const pages = require('./pages');
+const viewsGenerator = require('./views');
 
-module.exports = (plop) => {
+module.exports = plop => {
   plop.setGenerator('component', componentGenerator);
-  // plop.setGenerator('container', containerGenerator);
-  // plop.setGenerator('page', pages);
+  plop.setGenerator('views', viewsGenerator);
 };

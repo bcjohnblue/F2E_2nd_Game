@@ -1,18 +1,18 @@
 const path = require('path');
-const { isComponentExist } = require('../utils');
+const { isViewsExist } = require('../utils');
 
-const targetPath = path.resolve('src/components');
+const targetPath = path.resolve('src/views');
 module.exports = {
-  description: '添加 Component',
+  description: 'add pages',
   prompts: [
     {
       type: 'input',
       name: 'name',
-      message: '請輸入 Component 的名稱',
-      default: 'Button',
+      message: "Please enter Page's name",
+      default: 'Main',
       validate(value) {
         if (!/^[A-Za-z][A-Za-z0-9]+$/.test(value)) return 'Invalid name!';
-        return isComponentExist(value) ? 'Component name already exists!' : true;
+        return isViewsExist(value) ? 'Page name already exists!' : true;
       }
     }
   ],
