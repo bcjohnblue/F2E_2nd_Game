@@ -1,4 +1,4 @@
-import { createComponent } from '@vue/composition-api';
+import { createComponent, onMounted } from '@vue/composition-api';
 import './App.css';
 
 import Header from './layout/Header/Header';
@@ -6,24 +6,40 @@ import Body from './layout/Body/Body';
 
 import Phaser from 'phaser';
 import gameStart from './game/start';
+import gamePlay from './game/play';
 
 export default createComponent({
   name: 'App',
   setup() {
-    const width = document.body.offsetWidth;
-    const height = '100vh';
+    onMounted(() => {
+      console.log('mount');
 
-    const config = {
-      type: Phaser.AUTO,
-      // parent: 'app',
-      width,
-      height,
-      scene: [gameStart]
-    };
+      const width = document.body.offsetWidth;
+      const height = '100vh';
 
-    const game = new Phaser.Game(config);
+      const config = {
+        type: Phaser.AUTO,
+        // parent: 'app',
+        width,
+        height,
+        physics: {
+          default: 'arcade',
+          arcade: {
+            // gravity: {
+            //   y: 700
+            // },
+            debug: true
+          }
+        },
+        scene: [gamePlay, gameStart]
+      };
 
-    return () => <div id="app">{/* <Header></Header>
-        <Body></Body> */}</div>;
+      const game = new Phaser.Game(config);
+    })
+
+    // <Header></Header>
+    //         <Body></Body>
+
+    return () => < div id="app" />;
   }
 });
