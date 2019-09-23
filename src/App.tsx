@@ -19,14 +19,14 @@ export default createComponent({
 
       const config = {
         type: Phaser.AUTO,
-        // parent: 'app',
+        parent: '#app',
         width,
         height,
         physics: {
           default: 'arcade',
           arcade: {
             // gravity: {
-            //   y: 700
+            //   y: 1500
             // },
             debug: true
           }

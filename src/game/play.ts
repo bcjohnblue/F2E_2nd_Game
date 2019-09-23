@@ -17,13 +17,14 @@ function preload() {
   this.load.svg('coin_number', coin_number);
   this.load.svg('rock', rock);
 
-  this.gameStop = false; // 控制遊戲是否停止
   this.time = 90; // 遊戲時間
   this.coin = 0; // 獲得金幣數
+  this.isGameStop = false; // 控制遊戲是否停止
   this.isMoving = false; // 韓總是否移動中
 }
 
 function create() {
+  const self = this;
   const vw: number = document.body.offsetWidth;
   const vh: number = document.body.offsetHeight;
 
@@ -40,9 +41,10 @@ function create() {
   // this.avatar.setScale(0.8);
 
   // 生命
-  this.add.image(100, 100, 'life1');
-  this.add.image(180, 100, 'life2');
-  this.add.image(260, 100, 'life3');
+  this.life = [];
+  this.life[0] = this.add.image(100, 100, 'life1');
+  this.life[1] = this.add.image(180, 100, 'life2');
+  this.life[2] = this.add.image(260, 100, 'life3');
 
   // tslint:disable-next-line:max-line-length
   this.time_text = this.add.text(0.5 * vw - 150, 55, `TIME: ${this.time}s`, {
@@ -50,6 +52,21 @@ function create() {
     fontFamily: 'Beirut',
     color: '#000'
   });
+  // 設定時間
+  setInterval(() => {
+    console.log(this.time);
+
+    if (this.isGameStop) return;
+    this.time -= 1;
+    this.time_text.setText(`TIME: ${this.time}s`);
+    // this.time_text.setStyle({
+    //   fontSize: '82px',
+    //   fontFamily: 'Beirut',
+    //   color: '#000'
+    // });
+
+    // tslint:disable-next-line: align
+  }, 1000);
 
   // 金幣數
   this.add.image(vw - 300, 100, 'coin_number');
@@ -95,9 +112,25 @@ function create() {
   // 產生怪物
   this.rock = this.physics.add.sprite(0.9 * vw, 0.85 * vh, 'rock');
   this.rock.y -= this.rock.body.halfHeight;
+  // addPhysics(this.rock);
 
   const hittest = (player, rock) => {
-    this.gameStop = true;
+    console.log(self);
+    debugger;
+
+    const reduceLife = () => {
+      const length = self.life.length;
+      for (let index = length - 1; index < length; index--) {
+        console.log(self.life[index].alpha);
+        if (self.life[index].alpha !== 0) {
+          self.life[index].alpha = 0;
+          break;
+        }
+      }
+    };
+    this.isGameStop = true;
+    this.rock.alpha = 0;
+    reduceLife();
     console.log('撞到了');
   };
 
@@ -105,7 +138,7 @@ function create() {
 }
 
 function update() {
-  if (this.gameStop) return;
+  if (this.isGameStop) return;
 
   const vw: number = document.body.offsetWidth;
   const vh: number = document.body.offsetHeight;

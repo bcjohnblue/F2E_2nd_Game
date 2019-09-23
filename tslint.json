@@ -14,7 +14,9 @@
     "linebreak-style": false,
     "trailing-comma": false,
     "ter-arrow-parens": false,
-    "object-shorthand-properties-first": false
+    "object-shorthand-properties-first": false,
+    "no-increment-decrement": false,
+    "no-this-assignment": false
   },
   "rulesDirectory": []
 }
